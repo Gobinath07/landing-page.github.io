@@ -6,7 +6,7 @@ const sectionSet = document.querySelectorAll('section');
 
 
 // build the nav
-const naviBuilder = () => {
+const navigationBar = () => {
     let navigationUI = '';
     // loop to iterate through different sections
     sectionSet.forEach(section => {
@@ -19,50 +19,51 @@ const naviBuilder = () => {
     navigation.innerHTML = navigationUI;
 };
 
-naviBuilder();
+navigationBar();
 
 
-const activeSection = (section) => {
-  return Math.floor(section.getBoundingClientRect().top);
-};
+const links = document.querySelectorAll('li');
 
-// adding the active class
-const addActive = (condition,section) => {
-  if(condition) {
-      section.classList.add('your-active-class');
+function activate(links) {
+  links.forEach(function(link) {
+    link.classList.remove('active');
+  });
+  this.classList.add("active");
+}
+
+links.forEach(function(link) {
+   link.addEventListener('click', activate.bind(link, links));
+})
+
+
+window.addEventListener('scroll', event => { 
+    let nav = document.querySelector('.navbar__menu'); 
     
-  };
-};
+    
+});
 
-const removeActive=(section) => {
-  section.classList.remove('your-active-class');
+//Active navigation on scroll
+window.addEventListener('scroll', event => {
+  let navigationLinks = document.querySelectorAll('li a');
+  let fromTop = window.scrollY;
+ 
+  navigationLinks.forEach(link => {
+    let section = document.querySelector(link.hash);
+   
+    if (
+      section.offsetTop <= fromTop &&
+      section.offsetTop + section.offsetHeight > fromTop
+    ) {
+      link.classList.add('active');
+    
+    
+    
 
-};
-
-//actual function is implemeted here
-const sectionActivation = () => {
-  sectionSet.forEach(section => {
-      const elementOffset = activeSection(section);
-
-      viewPort = () => elementOffset < 180 && elementOffset >= -180;
-      removeActive(section);
-      addActive(viewPort(),section);
+    } else {
+      link.classList.remove('active');
+    
+      
+    }
   });
-};
-  
-window.addEventListener('scroll',sectionActivation);
+});
 
-// Scroll to anchor ID using scrollTO event
-
-const scroll = () => {
-  const links= document.querySelectorAll('.navbar__menu a');
-  links.forEach(link => { 
-      link.addEventListener('click', () => {
-          for(i =0; i<sections; i++) {
-              sections[i].addEventListener("click",sectionScroll(link));
-          }
-      });
-  });
-};
-
-scroll();

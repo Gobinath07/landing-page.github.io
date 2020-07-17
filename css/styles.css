@@ -91,7 +91,7 @@ a{
     color: #fff;
     transition: ease 0.3s all;
 }
-.link__active {
+.active {
     background:#194F61;
     color: black;
     transition: ease 0.3s all;
@@ -121,9 +121,11 @@ a{
 
 /* ---- Theme Rules ---- */
 /* Landing Container Styles */
+
 .landing__container {
     padding: 1em;
     text-align: left;
+    border:1px solid black;
 }
 
 @media only screen and (min-width: 35em){
@@ -230,27 +232,4 @@ section.your-active-class .landing__container::after {
 		           translate(-1em) 
 		           rotate(-360deg);
 	}
-}
-
-#topButton {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 15px;
-    z-index: 99;
-    border: none;
-    outline: none;
-    background-color:#194F61;
-    color: whitesmoke;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 25px;
-    font-size: 18px;
-}
-
-#topButton:hover {
-    background-color: #194F61;
-    border: none;
-	color: whitesmoke;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 4px 6px 0 rgba(255, 255, 255, 0.5);
 }
